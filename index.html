@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Will you be my Valentine? 💖</h2>
+    <div class="buttons">
+        <button id="yesBtn">Yes 💕</button>
+        <button id="noBtn">No 😢</button>
+    </div>
+</div>
+ 
+<div id="app">
+    <div id="hearts-container"></div>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+
+noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.position = "absolute";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+yesBtn.addEventListener("click", () => {
+    // replace app content only so audio element in body is not removed
+    const app = document.getElementById('app') || document.body;
+    app.innerHTML = `
+        <div class="letter-page">
+            <div class="letter">
+                <h2>จดหมายถึงไอ้อ้วงงที่น่ารักที่สุด</h2>
+                <button id="openLetterBtn" class="open-btn">Click me</button>
+                <p id="letterText" class="letter-text" aria-hidden="true"></p>
+            </div>
+            <div id="hearts-container"></div>
+        </div>
+    `;
+    if(window.initLetter) window.initLetter();
+});
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
